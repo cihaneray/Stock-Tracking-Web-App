@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Yeni Kullanıcı</title>
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0"/>
+      <link rel="shortcut icon" href="{{ url_for('static', filename='y.ico') }}">
+    <style>
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: url(../static/flat-mountains2.png);
+    background-size: cover;
+}
+
+.btn-12{
+  position: relative;
+  border:none;
+  box-shadow: none;
+  width: 40px;
+  line-height: 42px;
+  -webkit-perspective: 230px;
+  perspective: 230px;
+  margin-bottom: 3%;
+}
+.btn-12 span {
+  background: rgb(0,172,238);
+background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+  display: block;
+  position: absolute;
+  width: 130px;
+  height: 40px;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  border-radius: 10px;
+  margin:-10px;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.btn-12 span:nth-child(1) {
+  box-shadow:
+   -7px -7px 20px 0px #fff9,
+   -4px -4px 5px 0px #fff9,
+   7px 7px 20px 0px #0002,
+   4px 4px 5px 0px #0001;
+  -webkit-transform: rotateX(90deg);
+  -moz-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+}
+.btn-12 span:nth-child(2) {
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+}
+.btn-12:hover span:nth-child(1) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+.btn-12:hover span:nth-child(2) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+ color: transparent;
+  -webkit-transform: rotateX(-90deg);
+  -moz-transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
+}
+
+.container{
+    width: 100%;
+    max-width: 650px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 28px;
+    margin: 0 28px;
+    border-radius: 10px;
+    box-shadow: inset -2px 2px 2px white;
+}
+
+.form-title{
+    font-size: 26px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 6px;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    border-bottom: solid 1px white;
+}
+
+.main-user-info{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.user-input-box:nth-child(2n){
+    justify-content: end;
+}
+
+.user-input-box{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-bottom: 15px;
+}
+
+.user-input-box label{
+    width: 95%;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 5px 0;
+}
+
+.user-input-box input{
+    height: 40px;
+    width: 95%;
+    border-radius: 7px;
+    outline: none;
+    border: 1px solid grey;
+    padding: 0 10px;
+}
+.kullanici:focus::placeholder{
+    opacity: 0;
+  transition: opacity .9s;
+}
+
+.gender-title{
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 6px;
+    color: rgb(195, 87, 87);
+    text-shadow: 2px 2px 2px black;
+    border-bottom: solid 1px rgb(195, 87, 87);
+    margin-left: 210px;
+}
+
+.form-submit-btn{
+    margin-top: 40px;
+}
+
+.form-submit-btn input{
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+    padding: 10px;
+    border:none;
+    border-radius: 3px;
+    color: rgb(209, 209, 209);
+    background: rgba(63, 153, 85, 0.7);
+}
+
+.form-submit-btn input:hover{
+    background: rgba(56, 204, 93, 0.7);
+    color: rgb(255, 255, 255);
+}
+
+.frame {
+  width: 90%;
+  margin: 10px auto;
+  text-align: center;
+}
+
+button {
+  margin: 10px;
+}
+
+.btn-1 {
+  background: rgb(6,14,131);
+  background: linear-gradient(0deg, rgba(6,14,131,1) 0%, rgba(12,25,180,1) 100%);
+  border: none;
+  padding: 3.5%;
+  border-radius: 5%;
+  width: 90%;
+}
+.btn-1:hover {
+   background: rgb(0,3,255);
+background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
+}
+.frame span{
+  font-size: 20px;
+  color: #fff;
+}
+
+#container input {
+ position: absolute;
+ opacity: 0;
+ cursor: pointer;
+ height: 0;
+ width: 0;
+}
+
+#container {
+ display: block;
+ position: relative;
+ cursor: pointer;
+ font-size: 20px;
+ user-select: none;
+ margin-top: 4%;
+}
+#container span{
+    color: white;
+    font-size: 20px;
+}
+
+.checkmark {
+ position: relative;
+ top: 0;
+ left: 0;
+ height: 1.3em;
+ width: 1.3em;
+ background: #fff;
+ border-radius: 5px;
+ box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.30), 0px 1px 1px rgba(0,5);
+}
+
+#container input:checked ~ .checkmark {
+ background-image: linear-gradient(#b9e9b3,#a8e4a0)
+}
+
+.checkmark:after {
+ content: "";
+ position: absolute;
+ display: none;
+}
+
+#container input:checked ~ .checkmark:after {
+ display: block;
+}
+
+#container .checkmark:after {
+ left: 0.45em;
+ top: 0.25em;
+ width: 0.25em;
+ height: 0.5em;
+ border: solid white;
+ border-width: 0 0.15em 0.15em 0;
+ transform: rotate(45deg);
+}
+
+.spannn{
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 6px;
+    color: rgb(195, 87, 87);
+    text-shadow: 2px 2px 2px black;
+    border-bottom: solid 1px rgb(195, 87, 87);
+    margin-left: 190px;
+}
+
+
+:focus {
+    outline: 0;
+    border-color: #2260ff;
+    box-shadow: 0 0 0 4px #b5c9fc;
+  }
+  
+.mydict{
+  margin-top: 10%;
+  
+}
+
+  .mydict div {
+  
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 7%;
+    justify-content: center;
+    
+  }
+
+  .mydict input[type="radio"] {
+    clip: rect(0 0 0 0);
+    clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+  
+  .mydict input[type="radio"]:checked + span {
+    box-shadow: 0 0 0 0.0625em #0043ed;
+    background-color: #dee7ff;
+    z-index: 1;
+    color: #0043ed;
+  }
+  
+  .labelll span {
+    display: block;
+    cursor: pointer;
+    background-color: #fff;
+    padding: 0.375em .75em;
+    position: relative;
+    margin-left: .0625em;
+    box-shadow: 0 0 0 0.0625em #b5bfd9;
+    letter-spacing: .05em;
+    color: #3e4963;
+    text-align: center;
+    transition: background-color .5s ease;
+  }
+  
+  .labelll:first-child span {
+    border-radius: .375em 0 0 .375em;
+  }
+  
+  .labelll:last-child span {
+    border-radius: 0 .375em .375em 0;
+  }
+
+
+@media(max-width: 600px){
+    .container{
+        min-width: 280px;
+    }
+
+    .user-input-box{
+        margin-bottom: 12px;
+        width: 100%;
+    }
+
+    .user-input-box:nth-child(2n){
+        justify-content: space-between;
+    }
+
+    .gender-category{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .main-user-info{
+        max-height: 380px;
+        overflow: auto;
+    }
+
+    .main-user-info::-webkit-scrollbar{
+        width: 0;
+    }
+    /* .form-title{
+        margin-left: 5%;
+    } */
+    .btn-12{
+        margin-bottom: 15%;
+        margin-left: 25%;
+    }
+}
+
+@media (max-width:450px)
+{
+  body{
+    width: 150%;
+    height: 150%;
+    background-size: cover;
+    background-position: bottom;
+  }
+  #checklist span{
+    margin-left: 1%;
+  }
+  .mydict span{
+    margin-left: 1%;
+  }
+  .btn-12{
+    right: 20%;
+  }
+  .container{
+    margin-top: 5%;
+    width: 80%;
+  }
+
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <button class="custom-btn btn-12" onclick="location.href='/'"><span>Tıkla</span><span>Ana Sayfa</span></button>
+      <h1 class="form-title">Yeni Kullanıcı</h1>
+
+      <form action="/yeni_kullanıcı/kaydet" method=post class="form1">
+        <div class="main-user-info">
+          <div class="user-input-box">
+            <label for="fullName">Kullanıcı Adı</label>
+            <input type="text"
+                    id="fullName"
+                    name="new_username"
+                    class="kullanici"
+                    placeholder="Kullanıcı Adı"
+                    required/>
+          </div>
+          <div class="user-input-box">
+            <label for="username">Şifre</label>
+            <input type="password"
+                    id="username"
+                    name="new_password"
+                    title="Şifre girmezseniz otomatik olarak şifre kullanıcı adıyla aynı olur."
+                    class="kullanici"
+                    placeholder="Şifre"/>
+          </div>
+        </div>
+
+        <div class="COMMON">
+            <div id="checklist">
+                <span class="spannn">Kullanıcı Yetkileri</span><br>
+            <label for="01" id="container"><span>Servis Yetkisi</span>
+                <input checked="" type="checkbox" name="servis" value="1" id="01">
+                <div class="checkmark"></div>
+            </label>
+            <label for="02" id="container"><span>Stok Yetkisi</span>
+                <input type="checkbox" name="stok" value="1" id="02">
+                <div class="checkmark"></div>
+            </label>
+            <label for="03" id="container"><span>Yeni Stok Kaydı Açma</span>
+                <input type="checkbox" name="ekle" value="1" id="03">
+                <div class="checkmark"></div>
+            </label>
+            <label for="04" id="container"><span>Stok Geçmişi Görüntüleme</span>
+                <input type="checkbox" name="log" value="1" id="04">
+                <div class="checkmark"></div>
+            </label>
+        </div>
+        
+        <div class="mydict">
+          <span class="gender-title">Kullanıcı Tipi</span>
+          <div>
+           
+            <label class="labelll">
+                <input type="radio" name="user_type" value="customer" checked="">
+                <span>Müşteri</span>
+            </label>
+            <label class="labelll">
+                <input type="radio" name="user_type" value="employee">
+                <span>Personel</span>
+            </label>
+          </div>
+        </div>
+        <div class="frame">
+          
+          <button class="custom-btn btn-1"><span>Gönder</span></button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

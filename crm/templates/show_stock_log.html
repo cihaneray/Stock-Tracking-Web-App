@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stok</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='y.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins" , sans-serif;
+    }
+body{
+    min-height: 100vh;
+    background-color: #313131;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0);
+    background-size: 30px 30px;
+    background-position: -5px -5px;
+    
+}
+
+header{
+      width: 100%;
+   
+    }
+
+.header-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+      /* height: 120px; */
+  }
+
+  button {
+  margin: 20px;
+  }
+
+  .custom-btn {
+  width: 140px;
+  height: 50px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+  /* margin-left: 10px; */
+}
+
+
+  .btn-12{
+  position: relative;
+  right: 20px;
+  bottom: 20px;
+  border:none;
+  box-shadow: none;
+  width: 130px;
+  height: 40px;
+  line-height: 42px;
+  -webkit-perspective: 230px;
+  perspective: 230px;
+  margin-left: -10px;
+  margin-top: 20%;
+  }
+  .btn-12 span {
+  /* background: rgb(0,172,238);
+  background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%); */
+  background: rgb(11, 98, 133);
+  background: linear-gradient(0deg, rgb(9, 107, 145) 0%, rgb(7, 65, 124) 100%);
+  display: block;
+  position: absolute;
+  width: 130px;
+  height: 40px;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+  7px 7px 20px 0px rgba(0,0,0,.1),
+  4px 4px 5px 0px rgba(0,0,0,.1);
+  border-radius: 5px;
+  margin:0;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  }
+  .btn-12 span:nth-child(1) {
+  box-shadow:
+  -7px -7px 20px 0px #fff9,
+  -4px -4px 5px 0px #fff9,
+  7px 7px 20px 0px #0002,
+  4px 4px 5px 0px #0001;
+  -webkit-transform: rotateX(90deg);
+  -moz-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+  }
+  .btn-12 span:nth-child(2) {
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+  }
+  .btn-12:hover span:nth-child(1) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+  7px 7px 20px 0px rgba(0,0,0,.1),
+  4px 4px 5px 0px rgba(0,0,0,.1);
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+  }
+  .btn-12:hover span:nth-child(2) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+  7px 7px 20px 0px rgba(0,0,0,.1),
+  4px 4px 5px 0px rgba(0,0,0,.1);
+  color: transparent;
+  -webkit-transform: rotateX(-90deg);
+  -moz-transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
+  }
+
+
+  .header-right{
+      font-size: 30px;
+      color: #1945f6;
+  }
+
+
+.-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: red; */
+    padding-bottom: 15px;
+    border-bottom: 2px dashed #fff;
+    color: #fff;
+}
+
+.-form .title{
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 1%;
+    
+}
+
+.input-boxes{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #16b7df;
+  border-radius: 1%;
+  box-shadow: 10px 10px 10px #0080ff;
+
+}
+.input-box{
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+}
+/* #box2{
+  margin-left: 5%;
+} */
+.input-box input[type="text"]{
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.input-box input[type="number"]{
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.input-boxes span{
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 2%;
+}
+
+.inputsss{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content:space-around; */
+  justify-content:center;
+  margin-top: 5%;
+  /* background-color: red; */
+
+}
+
+input[type="date"]{
+    background-color: #0080ff;
+    padding: 5px;
+    /* position: absolute; */
+    /* transform: translate(-50%,-50%); */
+    font-family: "Roboto Mono",monospace;
+    color: #efe9e9;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+
+}
+
+::-webkit-calendar-picker-indicator{
+    background-color: #edeaea;
+    /* background-color: #2ec4d7; */
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+
+.btn-4 {
+  background-color: #4dccc6;
+background-image: linear-gradient(315deg, #3ab7b1 0%, #18a69d 74%);
+  line-height: 50px;
+  padding: 0;
+  border: none;
+}
+.btn-4:hover{
+  background-color: #89d8d3;
+background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
+}
+.btn-4 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.btn-4:before,
+.btn-4:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+   box-shadow:  4px 4px 6px 0 rgba(255,255,255,.9),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.9),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+  transition: all 0.3s ease;
+}
+.btn-4:before {
+  height: 0%;
+  width: .1px;
+}
+.btn-4:after {
+  width: 0%;
+  height: .1px;
+}
+.btn-4:hover:before {
+  height: 100%;
+}
+.btn-4:hover:after {
+  width: 100%;
+}
+.btn-4 span:before,
+.btn-4 span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.9),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.9),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+  transition: all 0.3s ease;
+}
+.btn-4 span:before {
+  width: .1px;
+  height: 0%;
+}
+.btn-4 span:after {
+  width: 0%;
+  height: .1px;
+}
+.btn-4 span:hover:before {
+  height: 100%;
+}
+.btn-4 span:hover:after {
+  width: 100%;
+}
+
+
+.main {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+  margin-top: 2%;
+  margin-left: 1%;
+}
+
+.main td, .main th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.main tr:nth-child(even){background-color: #f2f2f2;}
+.main tr:nth-child(odd){background-color: #e3e3e3;}
+
+.main tr:hover {background-color: #95adef;}
+
+.main th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+
+.inputsss input{
+  padding: 1%;
+  margin: 2%;
+  border-radius: 4%;
+  border: 1px solid #fff;
+
+}
+.total span{
+  margin-left: 1%;
+  font-size: 20px;
+  font-weight: 600;
+  color: #f2f2f2;
+}
+
+@media (max-width:450px){
+  
+  .-form{
+    border-bottom: none
+  }
+  .header-right{
+    visibility: hidden;
+  }
+  .main{
+    margin-left: 1%;
+    width: 20%;
+  }
+  /* .-form{
+    width: 150%;
+  
+  } */
+  .input-boxes{
+    margin-left: 40%;
+    width: 110%;
+  }
+  .inputsss{
+    margin-left: 25%;
+  }
+  #_show_stock_{
+    margin-left: 25%;
+  }
+  .main{
+    width: 300%;
+  }
+ 
+}
+
+
+    </style>
+</head>
+
+<body>
+    
+    <header>
+        <div class="header-wrapper">
+            <div class="header-left">
+                <button class="custom-btn btn-12" onclick="location.href='/stok_takip'"><span>Tıkla</span><span>Geri</span></button>
+            </div>
+            <div class="header-center">
+                
+            </div>
+            <div class="header-right">
+              <span>Yağmur Teknoloji</span>
+            </div>
+          </div>
+    </header>
+
+    <div class="-form">
+        <div class="title">
+          <span>Stok Araştır</span>
+
+        </div>
+        <form id="myForm" action="/show_stock_log/show_log" method="post">
+
+        <div class="input-boxes">
+          <div class="calendar">
+            <div class="input-box">
+                <span>Başlangıç Tarihi:</span>
+                <input type="date" name="start_date">
+            </div>
+            <div class="input-box" id="box2">
+                <span>Bitiş Tarihi:</span>
+                <input type="date" name="end_date">
+            </div>
+          </div>
+            <div class="input-box">
+              <span>Şirket İsmi:</span>
+              <input type="text" name="companyy">
+            </div>
+            <div class="input-box">
+              <span>Bu fiyattan yüksek:</span>
+              <input type="number" name="min_price" step="0.01">
+            </div>
+            <div class="input-box">
+              <span>Bu fiyattan düşük:</span>
+              <input type="number" name="max_price" step="0.01">
+            </div>
+            
+         
+        </div>
+        <div class="inputsss">
+
+          <input list="myList" name="sp_code" placeholder="Stok Kodu" autocomplete="on" onchange="checkValue(this)">
+          <datalist id="myList">
+          {% for secenek in name_list %}
+            <option value="{{ secenek }}">
+          {% endfor %}
+              
+          </datalist>
+       
+          <button type="submit" class="custom-btn btn-4"><span>Görüntüle</span></button> 
+          
+       </div>
+      
+        </form>
+        <!-- <a href="/product_process"> -->
+        <a href="/show_stock" id="_show_stock_">
+        <button type="submit" class="custom-btn btn-4"><span>Stoğu Gör</span></button>
+      </a>
+</div>
+
+<div class="total">
+  <span>Toplam TL: {{currency_list[0]}} ₺, USD: {{currency_list[1]}} $, EUR: {{currency_list[2]}} €</span> 
+</div>
+
+<div class="activity-data">
+
+    <table class="main" id="products">
+      
+      <thead>
+        
+        <tr>
+          <th>Id</th>
+          <th>Miktar</th>
+          <th>Şirket</th>
+          <th>Para Birimi</th>
+          <th>Tarih</th>
+          <th>Fiyat</th>
+          <th>Ürün Kodu</th>
+          <th>Özel Kod</th>
+          <th>Birim</th>
+
+
+          <!-- {% if stock_log is not none %}
+            {% for column in stock_log[0].keys() %}
+              <th>{{column}}</th>
+            {% endfor %}
+          {% endif %} -->
+        </tr>
+
+      </thead>
+      
+      <tbody>
+        
+        {% if (company_name != '') and (min_pricee != '') and (max_pricee != '')%}
+        
+          {% if stock_log is not none %}
+          {% set ns = namespace(id=0) %}
+          {% for log in stock_log %}
+            {% if (log.Sirket == company_name) and (log.Fiyat >= min_pricee) and (log.Fiyat <= max_pricee) %} 
+            <tr>
+              <td>{{ ns.id }}</td>
+              <td>{{log.Miktar}}</td>
+              <td>{{log.Sirket}}</td>
+              <td>{{log.Para_Birimi}}</td>
+              <td>{{log.Tarih}}</td>
+              <td>{{log.Fiyat}}</td>
+              <td>{{log.Urun_Kodu}}</td>
+              <td>{{log.Ozel_Kod}}</td>
+              <td>{{log.Birim}}</td>
+                
+              <!-- <td>{{ ns.id }}</td>
+              {% for c,d in log.items() %}
+                <td>{{ d }}</td>
+              {% endfor %} -->
+            </tr>
+            {% set ns.id = ns.id + 1 %}
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+        
+        {% elif (company_name != '') and (min_pricee == '') and (max_pricee == '') %}      
+         
+        {% if stock_log is not none %}
+          {% set ns = namespace(id=0) %}
+          {% for log in stock_log %}
+            {% if (log.Sirket == company_name) %} 
+            <tr>
+              <td>{{ ns.id }}</td>
+              <td>{{log.Miktar}}</td>
+              <td>{{log.Sirket}}</td>
+              <td>{{log.Para_Birimi}}</td>
+              <td>{{log.Tarih}}</td>
+              <td>{{log.Fiyat}}</td>
+              <td>{{log.Urun_Kodu}}</td>
+              <td>{{log.Ozel_Kod}}</td>
+              <td>{{log.Birim}}</td>
+
+
+              <!-- <td>{{ ns.id }}</td>
+              {% for c,d in log.items() %}
+                <td>{{ d }}</td>
+              {% endfor %} -->
+            </tr>
+            {% set ns.id = ns.id + 1 %}
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+
+          {% elif (company_name == '') and (min_pricee != '') and (max_pricee == '') %}      
+         
+          {% if stock_log is not none %}
+            {% set ns = namespace(id=0) %}
+            {% for log in stock_log %}
+            
+            {% if log.Fiyat|int >= min_pricee|int %}
+              <tr>
+                <td>{{ ns.id }}</td>
+                <td>{{log.Miktar}}</td>
+                <td>{{log.Sirket}}</td>
+                <td>{{log.Para_Birimi}}</td>
+                <td>{{log.Tarih}}</td>
+                <td>{{log.Fiyat}}</td>
+                <td>{{log.Urun_Kodu}}</td>
+                <td>{{log.Ozel_Kod}}</td>
+                <td>{{log.Birim}}</td>
+
+
+                <!-- <td>{{ ns.id }}</td>
+                {% for c,d in log.items() %}
+                  <td>{{ d }}</td>
+                {% endfor %} -->
+              </tr>
+              {% set ns.id = ns.id + 1 %}
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+
+            {% elif (company_name == '') and (min_pricee == '') and (max_pricee != '') %}      
+         
+            {% if stock_log is not none %}
+              {% set ns = namespace(id=0) %}
+              {% for log in stock_log %}
+              
+              {% if log.Fiyat|int <= max_pricee|int %}
+                <tr>
+
+                <td>{{ ns.id }}</td>
+              <td>{{log.Miktar}}</td>
+              <td>{{log.Sirket}}</td>
+              <td>{{log.Para_Birimi}}</td>
+              <td>{{log.Tarih}}</td>
+              <td>{{log.Fiyat}}</td>
+              <td>{{log.Urun_Kodu}}</td>
+              <td>{{log.Ozel_Kod}}</td>
+              <td>{{log.Birim}}</td>
+
+
+                  <!-- <td>{{ ns.id }}</td>
+                  {% for c,d in log.items() %}
+                    <td>{{ d }}</td>
+                  {% endfor %} -->
+                </tr>
+                {% set ns.id = ns.id + 1 %}
+              {% endif %}
+              {% endfor %}
+              {% endif %} 
+
+            {% elif (company_name == '') and (min_pricee != '') and (max_pricee != '') %}      
+         
+            {% if stock_log is not none %}
+              {% set ns = namespace(id=0) %}
+              {% for log in stock_log %}
+              
+              {% if (log.Fiyat|int <= max_pricee|int) and (log.Fiyat|int >= min_pricee|int) %}
+                <tr>
+                  <td>{{ ns.id }}</td>
+                  <td>{{log.Miktar}}</td>
+                  <td>{{log.Sirket}}</td>
+                  <td>{{log.Para_Birimi}}</td>
+                  <td>{{log.Tarih}}</td>
+                  <td>{{log.Fiyat}}</td>
+                  <td>{{log.Urun_Kodu}}</td>
+                  <td>{{log.Ozel_Kod}}</td>
+                  <td>{{log.Birim}}</td>
+
+
+
+                  <!-- <td>{{ ns.id }}</td>
+                  {% for c,d in log.items() %}
+                    <td>{{ d }}</td>
+                  {% endfor %} -->
+                </tr>
+                {% set ns.id = ns.id + 1 %}
+              {% endif %}
+              {% endfor %}
+              {% endif %} 
+
+            {% elif (company_name != '') and (min_pricee != '') and (max_pricee == '') %}      
+        
+            {% if stock_log is not none %}
+              {% set ns = namespace(id=0) %}
+              {% for log in stock_log %}
+              
+              {% if (log.Sirket == company_name) and (log.Fiyat|int >= min_pricee|int) %}
+                <tr>
+                  <td>{{ ns.id }}</td>
+                  <td>{{log.Miktar}}</td>
+                  <td>{{log.Sirket}}</td>
+                  <td>{{log.Para_Birimi}}</td>
+                  <td>{{log.Tarih}}</td>
+                  <td>{{log.Fiyat}}</td>
+                  <td>{{log.Urun_Kodu}}</td>
+                  <td>{{log.Ozel_Kod}}</td>
+                  <td>{{log.Birim}}</td>
+
+
+
+                  <!-- <td>{{ ns.id }}</td>
+                  {% for c,d in log.items() %}
+                    <td>{{ d }}</td>
+                  {% endfor %} -->
+                </tr>
+                {% set ns.id = ns.id + 1 %}
+              {% endif %}
+              {% endfor %}
+              {% endif %}   
+
+            {% elif (company_name != '') and (min_pricee == '') and (max_pricee != '') %}      
+      
+            {% if stock_log is not none %}
+              {% set ns = namespace(id=0) %}
+              {% for log in stock_log %}
+              
+              {% if (log.Sirket == company_name) and (log.Fiyat|int <= max_pricee|int) %}
+                <tr>
+                  <td>{{ ns.id }}</td>
+                  <td>{{log.Miktar}}</td>
+                  <td>{{log.Sirket}}</td>
+                  <td>{{log.Para_Birimi}}</td>
+                  <td>{{log.Tarih}}</td>
+                  <td>{{log.Fiyat}}</td>
+                  <td>{{log.Urun_Kodu}}</td>
+                  <td>{{log.Ozel_Kod}}</td>
+                  <td>{{log.Birim}}</td>
+
+
+                  <!-- <td>{{ ns.id }}</td>
+                  {% for c,d in log.items() %}
+                    <td>{{ d }}</td>
+                  {% endfor %} -->
+                </tr>
+                {% set ns.id = ns.id + 1 %}
+              {% endif %}
+              {% endfor %}
+              {% endif %}   
+
+        {% else %}
+        {% if stock_log is not none %}
+          {% set ns = namespace(id=0) %}
+          {% for log in stock_log %}
+            
+            <tr>
+              <td>{{ ns.id }}</td>
+              <td>{{log.Miktar}}</td>
+              <td>{{log.Sirket}}</td>
+              <td>{{log.Para_Birimi}}</td> 
+              <td>{{log.Tarih}}</td>
+              <td>{{log.Fiyat}}</td>
+              <td>{{log.Urun_Kodu}}</td>
+              <td>{{log.Ozel_Kod}}</td>
+              <td>{{log.Birim}}</td>
+ 
+              <!-- <td>{{ ns.id }}</td>
+              {% for c,d in log.items() %}
+                <td>{{ d }}</td>
+              {% endfor %} -->
+            </tr>
+            {% set ns.id = ns.id + 1 %}
+          
+          {% endfor %}
+          {% endif %}
+        {% endif %}
+            
+      </tbody>
+
+      </table>
+    
+  </div>
+
+  <script>
+  document.getElementById("add_button").addEventListener("click", addHeader);
+  var column_names = document.getElementById("column_name");
+  function addHeader() {
+  
+    const newName = prompt("Enter a name:");
+
+  
+    const foundLog = stock_log.find(log => log.Sirket === newName);
+
+    if (foundLog) {
+       
+        const newTh = document.createElement("th");
+        newTh.textContent = newName;
+        document.querySelector("thead tr").appendChild(newTh);
+
+        const newTd = document.createElement("td");
+        newTd.textContent = foundlog.Miktar; 
+
+        
+        const matchingRow = document.querySelector(`tbody tr[data-company="${newName}"]`);
+        if (matchingRow) {
+            matchingRow.appendChild(newTd);
+        } 
+    } 
+    else {
+        alert("Name not found in stock_log.");
+    }
+}
+
+  </script>
+  
+  <script>
+
+function checkValue(input) {
+  var list = document.getElementById("myList");
+  var options = list.options;
+  var value = input.value;
+  var match = false;
+  for (var i = 0; i < options.length; i++) {
+    if (value == options[i].value) {
+      match = true;
+      break;
+    }
+  }
+  if (!match) {
+    alert("Lütfen geçerli bir stok kodu giriniz");
+  }
+}
+    
+  </script>
+
+  <script>
+    document.getElementById('myForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+    
+      var message = document.createElement('div');
+      message.textContent = 'Yükleniyor...';
+      message.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); color: white; text-align: center; justify-content: center; align-items: center; font-size: 24px;';
+      document.body.appendChild(message);
+    
+      setTimeout(function() {
+        message.parentNode.removeChild(message);
+      }, 2000);
+    
+      this.submit();
+    });
+</script>
+
+
+</body>
+</html>

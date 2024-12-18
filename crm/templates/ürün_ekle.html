@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ürün Ekle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='y.ico') }}">
+
+    <style>
+            *::selection{
+                color: #fff;
+                background-color: #db474c;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f0f0f0;
+            }
+
+            .header {
+            /* background-color: #0f6b93; */
+            background:linear-gradient(to right,#0176a8,#58c3f2);
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: -40px;
+            border-bottom: 2px solid black;
+            }
+            .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            opacity: 0.9;
+            }
+
+            .product{
+            display:flex; 
+            justify-content:center;
+            width: 70%;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px #5a5a5a;
+            padding: 20px;
+            margin-bottom: 10px;
+            margin-left: 14%;
+            margin-right: 1%;
+            margin-top: 1%;
+            margin-bottom: 1%;
+            pointer-events: none;
+            /* background-color: #e8e1e1; */
+            /* background: repeating-linear-gradient(45deg, #0050fc,#0050fc 20px, #0684fade 20px,#0684fade 40px); */
+            --color: #E1E1E1;
+  background-color: #F3F3F3;
+  background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent),
+      linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
+  background-size: 55px 55px;
+            opacity: .8;
+        }
+         .product input[type="text"] {
+                padding: 15px 15px 15px 15px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                width: 50%;
+                box-sizing: border-box;
+                margin-left: 25%;
+                /* background-color: #2ea9de; */
+                pointer-events: auto;
+            }
+            
+        .product label{
+            font-weight: bold;
+            margin-right: 2%;
+            font-size: 25px;
+            /* font-weight: 800; */
+            display: flex;
+            justify-content: center;/
+        }
+
+            .malzemeler {
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0px 10px 10px #55bbcd;
+                padding: 20px;
+                margin-bottom: 10px;
+                margin-left: 1%;
+                margin-right: 1%;
+                margin-top: 1%;
+              
+            }
+            
+            .malzemeler input[type="number"] {
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                width: 85%;
+            }
+            #birim{
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                margin-left: -15px;
+            }
+            .birim{
+                padding: 9px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+            .malzemeler label {
+                font-weight: bold;
+                font-size: 16px;
+                margin-left: 10px;
+            }
+            
+            .malzeme2{
+                display: flex;
+                flex-direction: column;
+                padding: 10px;
+            }
+            button {
+                background-color: #4CAF50; 
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin-top: 10px;
+                cursor: pointer;
+            }
+            
+            
+            .snip1582 {
+        background-color: #c47135;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: 'BenchNine', Arial, sans-serif;
+        font-size: 1em;
+        font-size: 22px;
+        line-height: 1em;
+        margin: 15px 40px;
+        outline: none;
+        padding: 12px 40px 10px;
+        position: relative;
+        text-transform: uppercase;
+        font-weight: 700;
+}
+
+        .snip1582:before,
+        .snip1582:after {
+        border-color: transparent;
+        -webkit-transition: all 0.25s;
+        transition: all 0.25s;
+        border-style: solid;
+        border-width: 0;
+        content: "";
+        height: 24px;
+        position: absolute;
+        width: 24px;
+        }
+
+        .snip1582:before {
+        border-color: #c47135;
+        border-top-width: 2px;
+        left: 0px;
+        top: -5px;
+        }
+
+        .snip1582:after {
+        border-bottom-width: 2px;
+        border-color: #c47135;
+        bottom: -5px;
+        right: 0px;
+        }
+
+        .snip1582:hover,
+        .snip1582.hover {
+        background-color: #c47135;
+        }
+
+        .snip1582:hover:before,
+        .snip1582.hover:before,
+        .snip1582:hover:after,
+        .snip1582.hover:after {
+        height: 100%;
+        width: 100%;
+        }
+
+            .custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px 35px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+  margin-left: 40px;
+  top: -75px;
+}
+
+
+.btn-12{
+  position: relative;
+  right: 20px;
+  bottom: 20px;
+  border:none;
+  box-shadow: none;
+  width: 130px;
+  height: 40px;
+  line-height: 42px;
+  -webkit-perspective: 230px;
+  perspective: 230px;
+}
+.btn-12 span {
+  background: rgb(0,172,238);
+background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+  display: block;
+  position: absolute;
+  width: 130px;
+  height: 40px;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  border-radius: 5px;
+  margin:0;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.btn-12 span:nth-child(1) {
+  box-shadow:
+   -7px -7px 20px 0px #fff9,
+   -4px -4px 5px 0px #fff9,
+   7px 7px 20px 0px #0002,
+   4px 4px 5px 0px #0001;
+  -webkit-transform: rotateX(90deg);
+  -moz-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+}
+.btn-12 span:nth-child(2) {
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+}
+.btn-12:hover span:nth-child(1) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+.btn-12:hover span:nth-child(2) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+ color: transparent;
+  -webkit-transform: rotateX(-90deg);
+  -moz-transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
+}
+
+@media (max-width: 450px)
+{
+  body{
+    width: 150%;
+  }
+  .footer{
+    visibility: hidden;
+  }
+  .header{
+    
+    width: 100%;
+  }
+  .header h1{
+    margin-left: 15%;
+  }
+  .btn-12{
+    right: 11%;
+    
+  }
+  .product{
+    display: block;
+  
+    
+  }
+  .product input[type="text"]{
+    width: 95%;
+    margin-left: 8px;
+  }
+  .malzemeler{
+    margin-left: 8%;
+  }
+  .Buttons{
+    margin-left: 1%;
+    display: flex;
+    gap: 0px;
+  }
+  #first_button{
+    left: 4%;
+  }
+  #last_button{
+    right: 3%;
+  }
+  
+  
+}
+        
+    .malzeme {
+        display:flex; 
+        justify-content:center;
+        gap: 20px;
+    }
+    .malzeme > div {
+        display: flex;
+        flex-direction: column;
+        margin-right: 5px;
+    }
+
+
+    </style>
+</head>
+<body>
+    <div class="header"><h1>YENİ ÜRÜN EKLE</h1></div>
+    <button class="custom-btn btn-12" onclick="location.href='/stok_takip'"><span>Tıkla</span><span>Geri</span></button>
+        
+    <form id="urunFormu" action="/result" method="post">
+        
+        <div class="product" style="display:inline-block; margin-right:10px;">
+            <label for="urunAdi">Ürün Adı</label><br>
+            <input type="text" id="urunAdi" name="urunAdi" placeholder="Ürün Adı.." required>
+        </div>
+
+        <div id="myForms2" style="display:flex; flex-direction:column; align-items:center;">   
+            <div id="myForms" class="malzemeler">
+                <div class="malzeme" style="display:flex; justify-content:center;">
+                    
+                    <div class="malzeme2">
+                        <!-- <label for="malzemeAdi">Malzeme Adı</label>
+                        <select name="malzemeAdi[]" id="malzemeAdi" class="birim">
+                            {% for secenek in liste %}
+                                <option value="{{ secenek }}">{{ secenek }}</option>
+                            {% endfor %}
+                        </select> -->
+
+                      <label for="malzemeAdi">Malzeme Adı</label>
+                
+                      <input type="text" list="myList" name="malzemeAdi[]" class="birim" autocomplete="on" >
+                      <datalist id="myList">
+                        {% for secenek in liste %}
+                        <option value="{{ secenek }}">
+                          {% endfor %}
+                          
+                      </datalist>
+
+                    </div>
+                    <div style="display:inline-block; margin-right:10px; padding: 10px;">
+                        <label for="miktar">Miktar:</label><br>
+                        <input type="number" id="miktar" name="miktar[]" placeholder="Miktar">
+                    </div>
+                    <div style="display:inline-block; margin-right:10px; padding: 10px;">
+                        <label for="birim">Birim:</label><br>
+                        <select id="birim" name="birim[]">
+                            <option value="adet">Adet</option>
+                            <option value="metre">Metre</option>
+                            <option value="litre">Litre</option>
+                            <option value="kilogram">Kilogram</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="Buttons" style="display:flex; justify-content:center; margin-bottom: 100px;">
+                <button type="submit" class="snip1582" id="first_button">Gönder</button>
+                <button type="button" class="snip1582" id="ekle" >Ekle</button>
+                <button type="button" class="snip1582" id="last_button" onclick="removeForm()">Çıkar</button>
+
+            </div>
+        
+        </form>
+
+    <script>
+        $(document).ready(function(){
+            $("#ekle").click(function(){
+              $(".malzemeler").append('<div class="malzeme" style="display:flex; justify-content:center;"><div class="malzeme2">    <label for="malzemeAdi">Malzeme Adı</label><input type="text" list="myList" name="malzemeAdi[]" class="birim" autocomplete="on"><datalist id="myList">{% for secenek in liste %}<option value="{{ secenek }}">{% endfor %} </datalist></div><div style="display:inline-block; margin-right:10px; padding: 10px;"><label for="miktar">Miktar:</label><br><input type="number" id="miktar" name="miktar[]" placeholder="Miktar"></div><div style="display:inline-block; margin-right:10px; padding: 10px;"><label for="birim">Birim:</label><br><select id="birim" name="birim[]"><option value="adet">Adet</option><option value="metre">Metre</option><option value="litre">Litre</option><option value="kilogram">Kilogram</option></select></div></div>');
+            });
+        });
+    </script>
+    <!-- <label for="malzemeAdi">Malzeme Adı</label><input type="text" list="myList" name="malzemeAdi[]" class="birim" autocomplete="on"><datalist id="myList">{% for secenek in liste %}<option value="{{ secenek }}">{% endfor %} </datalist> -->
+                
+
+<script>
+
+    function removeForm() {
+      var formSections = document.getElementsByClassName("malzeme");
+      if (formSections.length > 1) {
+        var lastFormSection = formSections[formSections.length - 1];
+        document.getElementById("myForms").removeChild(lastFormSection);
+        formIndex--;
+      }
+    }
+  
+  </script>
+
+<script>
+    document.getElementById('urunFormu').addEventListener('submit', function(e) {
+      e.preventDefault();
+    
+      var message = document.createElement('div');
+      message.textContent = 'Ürün Ekleniyor';
+      message.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); color: white; text-align: center; justify-content: center; align-items: center; font-size: 24px;';
+      document.body.appendChild(message);
+    
+      setTimeout(function() {
+        message.parentNode.removeChild(message);
+      }, 2000);
+    
+      this.submit();
+    });
+    </script>
+  
+
+</body>
+</html>

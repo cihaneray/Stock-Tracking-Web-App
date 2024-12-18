@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş</title>
+
+    <style>
+
+        body{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: sans-serif;
+            
+            background-color: #0F0F33;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='275' height='275' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23172544' stroke-width='6.6'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%231D1F55'%3E%3Ccircle cx='769' cy='229' r='11'/%3E%3Ccircle cx='539' cy='269' r='11'/%3E%3Ccircle cx='603' cy='493' r='11'/%3E%3Ccircle cx='731' cy='737' r='11'/%3E%3Ccircle cx='520' cy='660' r='11'/%3E%3Ccircle cx='309' cy='538' r='11'/%3E%3Ccircle cx='295' cy='764' r='11'/%3E%3Ccircle cx='40' cy='599' r='11'/%3E%3Ccircle cx='102' cy='382' r='11'/%3E%3Ccircle cx='127' cy='80' r='11'/%3E%3Ccircle cx='370' cy='105' r='11'/%3E%3Ccircle cx='578' cy='42' r='11'/%3E%3Ccircle cx='237' cy='261' r='11'/%3E%3Ccircle cx='390' cy='382' r='11'/%3E%3C/g%3E%3C/svg%3E");            
+        }
+
+        .main{
+            width: 400px;
+            height: 550px;
+            
+            overflow: hidden;
+            /* background: url() no-repeat center/cover; */
+            background-color: #091C33;
+            border-radius: 10px;
+            box-shadow: 5px 20px 50px #000;
+            /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='275' height='275' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23172544' stroke-width='6.6'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%231D1F55'%3E%3Ccircle cx='769' cy='229' r='11'/%3E%3Ccircle cx='539' cy='269' r='11'/%3E%3Ccircle cx='603' cy='493' r='11'/%3E%3Ccircle cx='731' cy='737' r='11'/%3E%3Ccircle cx='520' cy='660' r='11'/%3E%3Ccircle cx='309' cy='538' r='11'/%3E%3Ccircle cx='295' cy='764' r='11'/%3E%3Ccircle cx='40' cy='599' r='11'/%3E%3Ccircle cx='102' cy='382' r='11'/%3E%3Ccircle cx='127' cy='80' r='11'/%3E%3Ccircle cx='370' cy='105' r='11'/%3E%3Ccircle cx='578' cy='42' r='11'/%3E%3Ccircle cx='237' cy='261' r='11'/%3E%3Ccircle cx='390' cy='382' r='11'/%3E%3C/g%3E%3C/svg%3E");             */
+
+        }
+
+        #chk{
+            display: none;
+        }
+
+        .login{
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .login label{
+            color: #fff;
+            font-size: 2.3em;
+            justify-content: center;
+            display: flex;
+            margin: 60px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .5s ease-in-out;
+            /* display: inline-block; */
+        }
+        .pass label{
+            color: #fff;
+            /* font-size: 2.3em; */
+            justify-content: center;
+            display: flex;
+            margin: 60px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .5s ease-in-out;
+
+            font-size: 30px;
+            margin-left: 40px;
+            margin-top: 7%;
+        }
+
+        .pass label:hover{
+            color: #2424c4;
+            
+        }
+        
+        input{
+            width: 70%;
+            height: 20px;
+            background: #e0dede;
+            justify-content: center;
+            display: flex;
+            margin: 20px auto;
+            padding: 10px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        button{
+            width: 60%;
+            height: 40px;
+            margin: 20px auto;
+            justify-content: center;
+            display: block;
+            color: #fff;
+            background: #573b8a;
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: 8%;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            transition: .2s ease-in;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background: #6d44b8;
+        }
+
+        .pass{
+            height: 460px;
+            /* height: 70%; */
+            background: #eee;
+            border-radius: 60% / 10%;
+            transform: translateY(-180px);
+            transition: .8s ease-in-out;
+        }
+
+        .pass label{
+            color: #573b8a;
+            transform: scale(.6);
+            /* text-decoration: underline; */
+            align-items: center;
+            justify-content: center;
+        }
+
+        #chk:checked ~ .pass{
+            transform: translateY(-500px);
+            
+        }
+
+        #chk:checked ~ .pass label{
+            transform: scale(1);
+            
+        }
+
+        #chk:checked ~ .login label{
+            transform: scale(.6);
+           
+        }
+
+        @media (max-width: 400px){
+            .main{
+                width: 300px;
+                height: 450px;
+            }
+            .login{
+                margin-bottom: 4%;
+            }
+            
+            .pass label{
+                margin-left: 20%;
+            }
+            
+
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <div class="main">
+        <input type="checkbox" id="chk" aria-hidden="true">
+
+        <div class="login"> 
+            <form action="/yetki" method="post">
+                <label for="chk" aria-hidden="true">Giriş</label>
+                <input type="text" name="user_name" placeholder="Kullanıcı Adı" required="">
+                <input type="password" name="password" placeholder="Şifre" required="">
+                <button>Giriş</button>
+
+            </form>
+            
+        </div>
+
+        <div class="pass">
+
+            <form action="/new_password" method="post">
+                <br>
+            <label for="chk" aria-hidden="true">Şifremi Unuttum</label>
+            <input type="text" name="username" placeholder="Kullanıcı Adı" required="">
+            <input type="email" name="email" placeholder="Email" required="">
+
+            <button>Gönder</button>
+        </form>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+</body>
+</html>

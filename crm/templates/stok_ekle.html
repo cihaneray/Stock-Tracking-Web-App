@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>STOK</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=yes' />
+        <link rel="shortcut icon" href="{{ url_for('static', filename='y.ico') }}">
+
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f0f0f0;
+            }
+            .header {
+          
+            background:linear-gradient(to right,#0176a8,#58c3f2);
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: -40px;
+            
+            border-bottom: 2px solid black;
+            }
+            .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            opacity: 0.9;
+            }
+            .formSection {
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0px 0px 10px #ccc;
+                /* box-shadow: 10px 10px 10px #22b7b7; */
+                padding: 20px;
+                margin-bottom: 10px;
+                margin-left: 1%;
+                margin-right: 1%;
+            }
+            .formSection input[type="text"] {
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                width: 85%;
+            }
+            .formSection input[type="number"] {
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                width: 85%;
+            }
+            .birim{
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+            .formSection label {
+                font-weight: bold;
+            }
+            button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin-top: 10px;
+                cursor: pointer;
+            }
+            .myAlert {
+                border-radius: 15px;
+                box-shadow: 0px 0px 10px #333;
+            }
+            
+            .snip1582 {
+        background-color: #c47135;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: 'BenchNine', Arial, sans-serif;
+        font-size: 1em;
+        font-size: 22px;
+        line-height: 1em;
+        margin: 15px 40px;
+        outline: none;
+        padding: 12px 40px 10px;
+        position: relative;
+        text-transform: uppercase;
+        font-weight: 700;
+}
+
+.snip1582:before,
+.snip1582:after {
+  border-color: transparent;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  border-style: solid;
+  border-width: 0;
+  content: "";
+  height: 24px;
+  position: absolute;
+  width: 24px;
+}
+
+.snip1582:before {
+  border-color: #c47135;
+  border-top-width: 2px;
+  left: 0px;
+  top: -5px;
+}
+
+.snip1582:after {
+  border-bottom-width: 2px;
+  border-color: #c47135;
+  bottom: -5px;
+  right: 0px;
+}
+
+.snip1582:hover,
+.snip1582.hover {
+  background-color: #c47135;
+}
+
+.snip1582:hover:before,
+.snip1582.hover:before,
+.snip1582:hover:after,
+.snip1582.hover:after {
+  height: 100%;
+  width: 100%;
+}
+
+
+            .gap{
+              margin-bottom: 100px;
+            }
+            .custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px 35px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+  margin-left: 40px;
+  top: -75px;
+}
+
+
+.btn-12{
+  position: relative;
+  right: 20px;
+  bottom: 20px;
+  border:none;
+  box-shadow: none;
+  width: 130px;
+  height: 40px;
+  line-height: 42px;
+  -webkit-perspective: 230px;
+  perspective: 230px;
+}
+.btn-12 span {
+  background: rgb(0,172,238);
+background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+  display: block;
+  position: absolute;
+  width: 130px;
+  height: 40px;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  border-radius: 5px;
+  margin:0;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.btn-12 span:nth-child(1) {
+  box-shadow:
+   -7px -7px 20px 0px #fff9,
+   -4px -4px 5px 0px #fff9,
+   7px 7px 20px 0px #0002,
+   4px 4px 5px 0px #0001;
+  -webkit-transform: rotateX(90deg);
+  -moz-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+}
+.btn-12 span:nth-child(2) {
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+}
+.btn-12:hover span:nth-child(1) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+.btn-12:hover span:nth-child(2) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+ color: transparent;
+  -webkit-transform: rotateX(-90deg);
+  -moz-transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
+}
+.kisa_kod{
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+@media (max-width: 450px)
+{
+	body{
+    width: 450%;
+  }
+  .footer{
+    visibility: hidden;
+  }
+}
+
+        </style>
+    </head>
+<body>
+<div class="header"><h1>YENİ STOK EKLE</h1></div>
+<button class="custom-btn btn-12" onclick="location.href='/stok_takip'"><span>Tıkla</span><span>Geri</span></button>
+
+
+<form id="myForm" action="/add_stock/save_stock" method="post"> 
+    <div id="myForms" style="display:flex; flex-direction:column; align-items:center;">
+        <div class="formSection">
+            <div style="display:flex; justify-content:center;">
+              <div style="display:inline-block; margin-right:10px;">
+                  <label for="firma">Firma:</label><br>
+                  <input type="text" id="firma" name="firma1">
+              </div>
+              <div style="display:inline-block; margin-right:10px;">
+                <label for="urun_kod">Ürün Kodu:</label><br>
+                <input type="text" id="urun_kod" name="urun_kod1">
+              </div>
+             <div style="display:inline-block; margin-right:10px;">
+              <label for="kisa_kod">Arama Kodu:</label><br>
+                
+                <input type="text" list="myList" name="kisa_kod1" placeholder="Arama Kodu:" autocomplete="on" required>
+                <datalist id="myList">
+                  {% for secenek in name_list %}
+                  <option value="{{ secenek }}">
+                    {% endfor %}
+                    
+                </datalist>
+
+            </div>
+            <div style="display:inline-block; margin-right:10px;">
+                <label for="miktar">Miktar:</label><br>
+                <input type="number" id="miktar" name="miktar1" pattern="\d*" required>
+              </div>
+              
+              <div style="display:inline-block; margin-right:10px;">
+                <label for="fiyat">Fiyat:</label><br>
+                <input type="number" id="fiyat" name="fiyat1" step="0.01" required>
+            </div>
+              <div style="display:inline-block; margin-right:10px;font-size: 15px;">
+                <label for="money_unit">Para Birimi:</label><br>
+                <select class="birim" name="money_unit1" id="money_unit" required>
+                    <option value="₺(TL)">₺(TL)</option>
+                    <option value="$(USD)">$(USD)</option>
+                    <option value="€(EUR)">€(EUR)</option>
+                </select>
+                  </div>
+              <div style="display:inline-block; margin-right:10px;">
+            <label for="birim">Birim:</label><br>
+            <select class="birim" name="birim1" id="birim" required>
+                <option value="adet">Adet</option>
+                <option value="metre">Metre</option>
+                <option value="litre">Litre</option>
+                <option value="kilogram">Kilogram</option>
+            </select>
+              </div>
+             
+              <div style="display:inline-block; margin-right:10px;">
+                  <label for="aciklama">Açıklama:</label><br>
+                  <input type="text" id="aciklama" name="aciklama1">
+              </div>
+              <div style="display:inline-block;">
+                <label for="not">Not:</label><br>
+                <input type="text" id="not" name="not1">
+            </div>
+        
+            {% for info in informations %}
+            <div style="display:inline-block; margin-right:10px; margin-left: 10px;">
+              <label for="new_">{{ info.Label_name}}:</label><br><input type="text" name="new_1" id="new_"> <input type="hidden" name="label" value={{ info.Label_name}}>
+            </div>
+            {% endfor %}
+          
+          <button type="button" class="snip1582" id="show" onclick="add_()">+</button>
+         
+            </div>
+        </div>
+    </div>
+
+    <div style="display:flex; justify-content:center; margin-bottom: 100px;">
+        <button type="submit" class="snip1582">Gönder</button>
+        <button type="button" class="snip1582" onclick="addForm()">Ekle</button>
+        <button type="button" class="snip1582" onclick="removeForm()">Çıkar</button>
+        
+
+      </div>
+</form>
+      <div class="footer">
+        © 2024 Yağmur Teknoloji
+      </div>
+
+  
+<!-- 
+<script>
+
+    var gosterBtn = document.getElementById("show");
+    var formSection = document.getElementsByClassName("formSection")[0];
+
+    function add_() {
+     
+      var newDiv = document.createElement("div");
+     
+      newDiv.style.display = "inline-block";
+      var newTh = document.createElement("label");
+      newTh.innerHTML = String(prompt("Etiket ismi giriniz..."));
+
+      // newDiv.innerHTML = '<label for="new_">' + newTh.innerHTML + ':</label><br><input type="text" name="new_1" id="new_"> <input type="hidden" name="label" value="Miktar:">';
+      newDiv.innerHTML = '<label for="new_">' + newTh.innerHTML + ':</label><br><input type="text" name="new_1" id="new_"> <input type="hidden" name="label" value=' + newTh.innerHTML + '>';
+
+      formSection.appendChild(newDiv);
+    };
+
+</script> -->
+
+
+
+<script>
+
+var gosterBtn = document.getElementById("show");
+var formSection = document.getElementsByClassName("formSection")[0];
+
+function add_() {
+ 
+  var newDiv = document.createElement("div");
+ 
+  newDiv.style.display = "inline-block";
+  var newTh = document.createElement("label");
+  var etiket = prompt("Etiket ismi giriniz...");
+  newTh.innerHTML = String(etiket);
+
+  newDiv.innerHTML = '<label for="new_">' + newTh.innerHTML + ':</label><br><input type="text" name="new_1" id="new_"> <input type="hidden" name="label" value=' + newTh.innerHTML + '>';
+  
+  formSection.appendChild(newDiv);
+
+  localStorage.setItem(etiket, newDiv.innerHTML);
+};
+
+// var gizliKeyler = ["status", "mode"];
+
+// window.onload = function() {
+
+//   var keys = Object.keys(localStorage);
+
+//   for (var i = 0; i < keys.length; i++) {
+//     var key = keys[i];
+//     var value = localStorage.getItem(key);
+
+//     if (gizliKeyler.indexOf(key) == -1) {
+//       var newDiv = document.createElement("div");
+//       newDiv.style.display = "inline-block";
+//       newDiv.innerHTML = value;
+//       formSection.appendChild(newDiv);
+//     }
+//   }
+// };
+
+</script>
+
+<script>
+var formIndex = 2;
+
+function addForm() {
+    var formSection = document.getElementsByClassName("formSection")[0];
+    var clone = formSection.cloneNode(true);
+    
+    var inputs = clone.getElementsByTagName('input');
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].value = '';
+        inputs[i].name = inputs[i].name.slice(0, -1) + formIndex;
+    }
+    var selects = clone.getElementsByTagName('select');
+    for (var i = 0; i < selects.length; i++) {
+    selects[i].name = selects[i].name.slice(0, -1) + formIndex;
+    }
+
+    document.getElementById("myForms").appendChild(clone);
+    formIndex++;
+    window.scrollTo(0,document.body.scrollHeight);
+}
+</script>
+
+<script>
+
+  function removeForm() {
+    var formSections = document.getElementsByClassName("formSection");
+    if (formSections.length > 1) {
+      var lastFormSection = formSections[formSections.length - 1];
+      document.getElementById("myForms").removeChild(lastFormSection);
+      formIndex--;
+    }
+  }
+
+</script>
+
+
+<script>
+  document.getElementById('myForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+  
+    var message = document.createElement('div');
+    message.textContent = 'Stok Eklenmiştir';
+    message.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); color: white; text-align: center; justify-content: center; align-items: center; font-size: 24px;';
+    document.body.appendChild(message);
+  
+    setTimeout(function() {
+      message.parentNode.removeChild(message);
+    }, 2000);
+  
+    this.submit();
+  });
+  </script>
+
+</body>
+</html>

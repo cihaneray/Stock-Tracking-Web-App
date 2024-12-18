@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='y.ico') }}">
+    <title>Yağmur Teknoloji</title>
+    <style>
+       
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+   
+    --primary-color: #0E4BF1;
+    --panel-color: #FFF;
+    --text-color: #000;
+    --black-light-color: #707070;
+    --border-color: #e6e5e5;
+    --toggle-color: #DDD;
+    --box1-color: #4DA3FF;
+    --box2-color: #FFE6AC;
+    --box3-color: #E7D1FC;
+    --title-icon-color: #fff;
+    --nav-color:rgb(234, 233, 233);
+    --tran-05: all 0.5s ease;
+    --tran-03: all 0.3s ease;
+    --tran-03: all 0.2s ease;
+}
+
+body{
+    min-height: 100vh;
+    /* background-color: var(--primary-color); */
+    background-color: #fff;
+    /* background: linear-gradient(to right, #fff 0%, rgb(207, 200, 200) 100%); */
+}
+body.dark{
+    --primary-color: #3A3B3C;
+    /* pano ve son-aktivite */
+    background-color:#242526 ;
+    --panel-color: #242526;
+    /* background */
+    --text-color: #CCC;
+    /* textler*/
+    --black-light-color: #000;
+    /* nav bardakiler */
+    --border-color: #4D4C4C;
+    /* logouttaki çizgi */
+    --toggle-color: #FFF;
+    /* toggele'ın rengi; */
+    --box1-color: #1b3c5d;
+    /* box1 renk*/
+    --box2-color: #1b3c5d;
+    /* box2 renk */
+    --box3-color: #1b3c5d;
+    /* box3 renk */
+    --title-icon-color: rgb(61, 61, 194);
+    /* pano ve son aktivitelerdeki renk */
+    --nav-color:rgb(185, 179, 179);
+    
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0b3cc1;
+}
+
+body.dark::-webkit-scrollbar-thumb:hover,
+body.dark .activity-data::-webkit-scrollbar-thumb:hover{
+    background: #3A3B3C;
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background-color: var(--nav-color);
+    
+    /* background: linear-gradient(to right,#0176a8,#58c3f2); */
+    border-right: 1px solid rgb(100, 98, 98);
+    transition: var(--tran-05);
+}
+nav.close{
+    width: 73px;
+}
+nav .logo-name{
+    /*display: flex;
+    align-items: center;*/
+    padding-bottom: 8%;
+    border-bottom: 2px solid #000;  
+}
+nav .logo-image{
+    display: flex;
+    justify-content: center;
+    min-width: 45px;
+}
+nav .logo-image img{
+    /* border-radius: 50%; */
+    width: 45%;
+    transform: scale(1.2);
+    object-fit: cover;
+    mix-blend-mode: multiply;
+}
+
+nav .logo-name .logo_name{
+    font-size: 22px;
+    font-weight: 600;
+    /* color: var(--text-color); */
+    color: #000;
+    margin-left: 14px;
+    transition: var(--tran-05);
+}
+nav.close .logo_name{
+    opacity: 0;
+    pointer-events: none;
+}
+nav.close .logo-image img{
+    width: 50px;
+}
+nav.close .logo-name{
+    padding-bottom: 40%;
+}
+nav .menu-items{
+    margin-top: 40px;
+    height: calc(100% - 90px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.menu-items li{
+    list-style: none;
+    margin-bottom: 15px;
+}
+.menu-items li a{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    text-decoration: none;
+    position: relative;
+}
+.nav-links li a:hover:before{
+    content: "";
+    position: absolute;
+    left: -7px;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}
+body.dark li a:hover:before{
+    background-color: rgb(28, 28, 172);
+}
+.menu-items li a i{
+    font-size: 24px;
+    min-width: 45px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+}
+.menu-items li a .link-name{
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--black-light-color);    
+    transition: var(--tran-05);
+}
+nav.close li a .link-name{
+    opacity: 0;
+    pointer-events: none;
+}
+.nav-links li a:hover i,
+.nav-links li a:hover .link-name{
+    color: var(--primary-color);
+}
+body.dark .nav-links li a:hover i,
+body.dark .nav-links li a:hover .link-name{
+    color: rgb(74, 74, 202);
+}
+.menu-items .logout-mode{
+    padding-top: 10px;
+    border-top: 2px solid #000;
+    margin-bottom: 5%;
+}
+.logout-mode-exit a:hover:before{
+    content: "";
+    position: absolute;
+    left: -7px;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: red;
+}
+
+.logout-mode-exit a:hover i,
+.logout-mode-exit a:hover .link-name{
+    color:rgb(228, 31, 31);
+}
+
+.logout-mode-profil a:hover:before{
+    content: "";
+    position: absolute;
+    left: -7px;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: rgb(79, 226, 123);
+}
+
+.logout-mode-profil a:hover i,
+.logout-mode-profil a:hover .link-name{
+    color:rgb(31, 228, 64);
+}
+
+.menu-items .mode{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+.menu-items .mode-toggle{
+    position: absolute;
+    right: 14px;
+    height: 50px;
+    min-width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.mode-toggle .switch{
+    position: relative;
+    display: inline-block;
+    height: 22px;
+    width: 40px;
+    border-radius: 25px;
+    background-color: var(--toggle-color);
+}
+.switch:before{
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 15px;
+    width: 15px;
+    background-color: var(--panel-color);
+    border-radius: 50%;
+    transition: var(--tran-03);
+}
+body.dark .switch:before{
+    left: 20px;
+}
+
+.dashboard{
+    position: relative;
+    left: 250px;
+    background-color: var(--panel-color);
+    min-height: 100vh;
+    width: calc(100% - 250px);
+    padding: 10px 14px;
+    transition: var(--tran-05);
+}
+nav.close ~ .dashboard{
+    left: 73px;
+    width: calc(100% - 73px);
+}
+.dashboard .top{
+    position: fixed;
+    top: 0;
+    left: 250px;
+    display: flex;
+    width: calc(100% - 250px);
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: linear-gradient(to right,#0176a8,#58c3f2);
+    transition: var(--tran-05);
+    z-index: 10000;
+    height: 10%;
+}
+nav.close ~ .dashboard .top{
+    left: 73px;
+    width: calc(100% - 73px);
+}
+.dashboard .top .sidebar-toggle{
+    font-size: 26px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+.dashboard .top .search-box{
+    position: relative;
+    height: 45px;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 30px;
+    font-size: 35px;
+    margin-left: 30%;
+    align-items: center;
+}
+/* .top .search-box span{
+
+    font-size: 35px;
+    margin-left: 35%;
+    align-items: center;
+    
+} */
+.top .search-box i{
+    position: absolute;
+    left: 15px;
+    font-size: 22px;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--black-light-color);
+}
+.top img{
+    width: 7.5%;
+    mix-blend-mode: multiply;
+    /* height: 80px; */
+    object-fit: cover;
+}
+.dashboard .dash-content{
+    padding-top: 50px;
+    z-index: 10;
+}
+.dash-content .title{
+    display: flex;
+    align-items: center;
+    margin: 60px 0 30px 0;
+}
+.dash-content .title i{
+    position: relative;
+    height: 35px;
+    width: 35px;
+    background-color: var(--primary-color);
+    border-radius: 6px;
+    color: var(--title-icon-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+.dash-content .title .text{
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-left: 10px;
+}
+.dash-content .boxes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    z-index: 10;
+}
+.dash-content .boxes .box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    width: calc(100% / 3 - 15px);
+    padding: 15px 20px;
+    background-color: var(--box1-color);
+    transition: var(--tran-05);
+    z-index: 10;
+}
+.boxes .box i{
+    font-size: 35px;
+    color: var(--text-color);
+}
+.boxes .box .text{
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+.boxes .box .number{
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+.boxes .box.box2{
+    background-color: var(--box2-color);
+}
+.boxes .box.box3{
+    background-color: var(--box3-color);
+}
+.dash-content .activity .activity-data{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    z-index: 10;
+}
+.activity .activity-data{
+    display: flex;
+   
+}
+
+.container {
+    position: relative;
+    text-align: left;
+    overflow: hidden;
+    width: 60%;
+    margin: 0 auto;
+    display: table;
+    padding: 4px;
+    z-index: 10;
+    border-radius: 40px;
+}
+
+.container th h1 {
+font-weight: bold;
+    font-size: 20px;
+  text-align: left;
+  /* color: #000; */
+  color: #c1c1c1;
+}
+
+body.dark .container th h1{
+    color: #CCC;
+}
+
+.container td {
+    font-weight: normal;
+    font-size: 1em;
+  -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+     -moz-box-shadow: 0 2px 2px -2px #0E1119;
+          box-shadow: 0 2px 2px -2px #0E1119;
+}
+
+.container td, .container th {
+    padding-bottom: 2%;
+    padding-top: 2%;
+  padding-left:2%;  
+}
+
+
+.container tr:nth-child(odd) {
+    background-color: rgb(17, 114, 167);
+}
+
+.container tr:nth-child(even) {
+    background-color: #055770;
+}
+
+.container th {
+    /* background-color: #1F2739; */
+    background-color: #2a3a60;
+    /* background-color: #608aea; */
+}
+
+.container td:first-child {
+     color: #FB667A; 
+    }
+
+.container tr:hover {
+   background-color: rgb(79, 176, 229);
+-webkit-box-shadow: 0 6px 6px -6px #0E1119;
+     -moz-box-shadow: 0 6px 6px -6px #0E1119;
+          box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+.container td:hover {
+  background-color: #FFF842;
+  color: #403E10;
+  font-weight: bold;
+  
+  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+  transform: translate3d(6px, -6px, 0);
+  
+  transition-delay: 0s;
+    transition-duration: 0.4s;
+    transition-property: all;
+  transition-timing-function: line;
+}
+
+.bbbbb ul li {
+	position: absolute;
+	width: 35px;
+	height: 35px;
+	list-style: none;
+	opacity: 0.6;
+	background: radial-gradient(rgb(90, 233, 157), transparent, transparent);
+	bottom: 0;
+	left: 10vw;
+	animation: animate 15s linear infinite;
+}
+.bbbbb ul li:nth-child(2) {
+	left: 36vw;
+	animation-delay: 1s;
+}
+.bbbbb ul li:nth-child(3) {
+	left: 22vw;
+}
+.bbbbb ul li:nth-child(4) {
+	left: 56vw;
+	animation-delay: 1s;
+}
+.bbbbb ul li:nth-child(5) {
+	left: 76vw;
+	/* animation-delay: 4s; */
+}
+.bbbbb ul li:nth-child(6) {
+	left: 80vw;
+	animation-delay: 1s;
+}
+.bbbbb ul li:nth-child(7) {
+	left: 85vw;
+}
+@keyframes animate {
+	0% {
+		transform: scale(0);
+		opacity: 1;
+		bottom: 0;
+	}
+	100% {
+		transform: scale(10);
+		opacity: 0;
+		bottom: 100vh;
+	}
+}
+
+
+@media (max-width: 1500px) {
+    nav{
+        width: 73px;
+    }
+    nav.close{
+        width: 250px;
+    }
+    nav .logo_name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close .logo_name{
+        opacity: 1;
+        pointer-events: auto;
+    }
+    nav li a .link-name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close li a .link-name{
+        opacity: 1;
+        pointer-events: auto;
+    }
+    nav ~ .dashboard{
+        left: 73px;
+        width: calc(100% - 73px);
+    }
+    nav.close ~ .dashboard{
+        left: 250px;
+        width: calc(100% - 250px);
+    }
+    nav ~ .dashboard .top{
+        left: 73px;
+        width: calc(100% - 73px);
+    }
+    nav.close ~ .dashboard .top{
+        left: 250px;
+        width: calc(100% - 250px);
+    }
+    /* .activity .activity-data{
+        overflow-X: scroll;
+    } */
+}
+
+@media (max-width: 1000px) and (min-width:560px) {
+    .dash-content .boxes .box{
+        width: calc(100% / 2 - 15px);
+        margin-top: 15px;
+    }
+    body{
+        width: 150%;
+    }
+    .dash-content{
+    margin-top: 3%;
+  }
+  .container{
+    width: 100%;
+  }
+  nav{
+    z-index: 100;
+  }
+  .dashboard .top{
+    height: 7%;
+  }
+  nav .logo-image img{
+    /* width: 80px; */
+    /* height: 40%; */
+    margin-top: 8%;
+    transform: scale(2.6);
+  }
+nav .logo-name{
+    border-bottom: none;
+    padding-bottom: 3%;
+}
+.nav-links{
+    margin-top: -16%;
+}
+.bbbbb{
+        display: none;
+    }
+
+}
+@media (max-width: 560px) {
+    .dash-content .boxes .box{
+        width: 100% ;
+    }
+    /* body{
+        width: 150%;
+    } */
+    .dashboard .top{
+        z-index: 15000;
+        width: 200%;
+        justify-content: flex-end;
+        height: 10%;
+        font-size: 10px;
+ 
+    }
+    .search-box{
+        bottom: 20%;
+        left: -9%;
+        font-weight: 200;
+    }
+    .search-box span{
+        font-size: 15px;
+        font-weight: 500;
+    }
+    nav .logo-name{
+        border-bottom: none;
+    }
+    .dash-content{
+    margin-top: -8%;
+  }
+  .dash-content .boxes .box{
+        margin-bottom: 2%;
+    }
+  .nav-links{
+        margin-top: -55%;
+    }
+    .dash-content{
+    margin-top: -2%;
+  }
+    .bbbbb{
+        display: none;
+    }
+    .container {
+    width: inherit;
+    table-layout: inherit;
+    padding: inherit;
+    border: inherit;
+    margin: inherit;
+    border-radius: 15px;
+  }
+
+  th, td {
+    padding: inherit;
+    border: inherit;
+    margin: inherit;
+  }
+  /* .top img{
+    width: 10%;
+    height: 25%;
+   
+} */
+.top img{
+    width: 20%;
+   
+}
+    nav{
+        width: 50px;
+    }
+    nav.close{
+        width: 73px;
+    }
+    nav .logo_name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close .logo_name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav li a .link-name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close li a .link-name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav ~ .dashboard{
+        left: 0;
+        width: 100%;
+    }
+    nav.close ~ .dashboard{
+        left: 73px;
+        width: calc(100% - 73px);
+    }
+    nav ~ .dashboard .top{
+        left: 0;
+        width: 100%;
+    }
+    nav.close ~ .dashboard .top{
+        left: 0;
+        width: 100%;
+    }
+    th:nth-child(4){
+    width: 25%;
+  }
+.menu-items{
+    margin-top: 5%;
+}
+   
+}
+@media (max-width: 450px) {
+    nav{
+        width: 0px;
+    }
+    nav.close{
+        width: 73px;
+    }
+    nav .logo_name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close .logo_name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav li a .link-name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close li a .link-name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav ~ .dashboard{
+        left: 0;
+        width: 100%;
+    }
+    nav.close ~ .dashboard{
+        left: 73px;
+        width: calc(100% - 73px);
+    }
+    nav ~ .dashboard .top{
+        left: 0;
+        width: 100%;
+    }
+    nav.close ~ .dashboard .top{
+        left: 0;
+        width: 100%;
+    }
+    /* body{
+        width: 120%;
+    } */
+    .dashboard .top{
+        z-index: 15000;
+        width: 200%;
+        justify-content: flex-end;
+        height: 10%;
+        font-size: 10px;
+ 
+    }
+    .search-box{
+        bottom: 25%;
+        left: -5%;
+        font-weight: 200;
+    }
+    .dash-content .boxes .box{
+        margin-bottom: 2%;
+    }
+    .search-box span{
+        font-size: 13px;
+        font-weight: 500;
+    }
+    nav .logo-name{
+        border-bottom: none;
+    }
+    .nav-links{
+        margin-top: -55%;
+    }
+    .bbbbb{
+        display: none;
+    }
+    /* .container{
+        width: 100%;
+        margin: 0;
+        
+    } */
+    .container {
+    width: inherit;
+    table-layout: inherit;
+    padding: inherit;
+    border: inherit;
+    margin: inherit;
+    border-radius: 15px;
+  }
+  .dash-content{
+    margin-top: -8%;
+  }
+
+  th, td {
+    padding: inherit;
+    border: inherit;
+    margin: inherit;
+    /* padding-right: 5px; */
+   
+  }
+  th:nth-child(4){
+    width: 25%;
+  }
+  /* .top img{
+    width: 10%;
+    height: 25%;
+   
+} */
+.top img{
+    width: 20%;
+   
+}
+.menu-items{
+    margin-top: 5%;
+}
+    
+
+
+}
+
+@media (max-width: 369px){
+    .search-box span{
+        font-size: 11px;
+        font-weight: 600;
+    }
+    nav .logo-name{
+        border-bottom: none;
+    }
+    .bbbbb{
+        display: none;
+    }
+}
+@media (max-width: 340px){
+    .search-box span{
+        font-size: 8px;
+        font-weight: 600;
+    }
+}
+
+@media (min-height: 800px) and (max-height: 960px) and (max-width: 450px) and (min-width:400px){
+    body{
+        height: 150vh;
+    }
+    .dashboard{
+        margin-top: 5%;
+        height: 150vh;
+    }
+    .nav-links{
+    margin-top: 25%;
+}
+.nav-links{
+        margin-top: -20%;
+    }
+.search-box span{
+        font-size: 14.5px;
+        font-weight: 600;
+    }
+    nav .logo-name{
+        border-bottom: none;
+    }
+    .search-box{
+        bottom: 15%;
+        left: -5%;
+        font-weight: 200;
+    }
+    
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+               <img src="{{ url_for('static', filename='new_logo.jpg') }}" alt="logo">
+            </div>
+
+            <!-- <span class="logo_name">Yağmur Teknoloji</span> -->
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="#">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Anasayfa</span>
+                </a></li>
+                <li><a href="/stok_takip">
+                    <i class="uil uil-chart"></i>
+                    <span class="link-name">Stok Takip</span>
+                </a></li>
+                {% if servis == 1 %}
+                <li><a href="/yeni_kullanıcı">
+                    <i class="uil uil-user-plus"></i>
+                    <span class="link-name">Yeni Kullanıcı Ekle</span>
+                </a></li>
+                {% endif %}
+            </ul>
+            
+            <ul class="logout-mode">
+                <li class="logout-mode-profil"><a href="/profil">
+                    <i class="uil uil-user"></i>
+                    <span class="link-name">Profil</span>
+                </a></li>
+                <li class="logout-mode-exit"><a href="/logout?parametre=aZ3Fg629Hj871Kl453Mn087Pq265Rs941Tu738Vw124Xy670Za356Bc092Df814E" onclick="return confirm('Çıkmak istiyor musunuz?')">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Çıkış</span>
+                </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                    <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                  <span class="switch"></span>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <span>Yağmur Teknoloji</span>
+            </div>
+        
+            <img src="{{ url_for('static', filename='new_logo.jpg') }}" alt="new_logo">
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-tachometer-fast-alt"></i>
+                    <span class="text">Pano</span>
+                </div>
+
+                <div class="boxes">
+                    <div class="box box1">
+                        <i class="uil uil-box"></i>
+                        <span class="text">Ürünler</span>
+                        <span class="number">{{products_number}}</span>
+                    </div>
+                    <div class="box box2">
+                        <i class="uil uil-truck-loading"></i>
+                        <span class="text">Üretilen Ürün</span>
+                        <span class="number">{{ created_prod }}</span>
+                    </div>
+                    <div class="box box3">
+                        <i class="uil uil-users-alt"></i>
+                        <span class="text">Kullanıcı</span>
+                        <span class="number">{{number_of_users}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <div class="title">
+                    <i class="uil uil-clock-three"></i>
+                    <span class="text">Son Aktiviteler</span>
+                </div>
+
+                <div class="activity-data">
+                    
+                <table class="container">
+                    <thead>
+                      <tr>
+                        <th><h1>Kullanıcı Adı</h1></th>
+                        <th><h1>İşlem Tipi</h1></th>
+                        <th><h1>Tarihi</h1></th>
+                        <th><h1>Saati</h1></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{usernames[4]}}</td>
+                        <td>{{types[4]}}</td>
+                        <td>{{dates[4]}}</td>
+                        <td>{{times[4]}}</td>
+                      </tr>
+                      <tr>
+                        <td>{{usernames[3]}}</td>
+                        <td>{{types[3]}}</td>
+                        <td>{{dates[3]}}</td>
+                        <td>{{times[3]}}</td>
+                      </tr>
+                      <tr>
+                        <td>{{usernames[2]}}</td>
+                        <td>{{types[2]}}</td>
+                        <td>{{dates[2]}}</td>
+                        <td>{{times[2]}}</td>
+                      </tr>
+                      <tr>
+                        <td>{{usernames[1]}}</td>
+                        <td>{{types[1]}}</td>
+                        <td>{{dates[1]}}</td>
+                        <td>{{times[1]}}</td>
+                      </tr>
+                      <tr>
+                        <td>{{usernames[0]}}</td>  
+                        <td>{{types[0]}}</td>
+                        <td>{{dates[0]}}</td>
+                        <td>{{times[0]}}</td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+             
+            </div>
+        </div>
+    </section>
+    <div class="bbbbb">
+      <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+             
+      </ul>
+  </div>
+
+    <script>
+const body = document.querySelector("body"),
+      modeToggle = body.querySelector(".mode-toggle");
+      sidebar = body.querySelector("nav");
+      sidebarToggle = body.querySelector(".sidebar-toggle");
+
+let getMode = localStorage.getItem("mode");
+if(getMode && getMode ==="dark"){
+    body.classList.toggle("dark");
+}
+
+let getStatus = localStorage.getItem("status");
+if(getStatus && getStatus ==="close"){
+    sidebar.classList.toggle("close");
+}
+
+modeToggle.addEventListener("click", () =>{
+    body.classList.toggle("dark");
+    if(body.classList.contains("dark")){
+        localStorage.setItem("mode", "dark");
+    }else{
+        localStorage.setItem("mode", "light");
+    }
+});
+
+sidebarToggle.addEventListener("click", () => {
+    sidebar.classList.toggle("close");
+    if(sidebar.classList.contains("close")){
+        localStorage.setItem("status", "close");
+    }else{
+        localStorage.setItem("status", "open");
+    }
+})
+
+    </script>
+</body>
+</html>

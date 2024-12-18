@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stok</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='y.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins" , sans-serif;
+    }
+body{
+    min-height: 100vh;
+    /* background-color: #313131;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0);
+    background-size: 30px 30px;
+    background-position: -5px -5px; */
+    background-image: linear-gradient(45deg, rgba(0, 145, 200, .6), rgba(1, 193, 120, .6));
+    
+}
+
+header{
+      width: 100%;
+   
+    }
+
+.header-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+      /* height: 120px; */
+  }
+
+  button {
+  margin: 20px;
+  }
+
+  .custom-btn {
+  width: 140px;
+  height: 50px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+  /* margin-left: 10px; */
+}
+
+
+  .btn-12{
+  position: relative;
+  right: 20px;
+  bottom: 20px;
+  border:none;
+  box-shadow: none;
+  width: 130px;
+  height: 40px;
+  line-height: 42px;
+  -webkit-perspective: 230px;
+  perspective: 230px;
+  margin-left: -10px;
+  margin-top: 20%;
+  }
+  .btn-12 span {
+  background: rgb(0,172,238);
+    background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+  display: block;
+  position: absolute;
+  width: 130px;
+  height: 40px;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+  7px 7px 20px 0px rgba(0,0,0,.1),
+  4px 4px 5px 0px rgba(0,0,0,.1);
+  border-radius: 5px;
+  margin:0;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  }
+  .btn-12 span:nth-child(1) {
+  box-shadow:
+  -7px -7px 20px 0px #fff9,
+  -4px -4px 5px 0px #fff9,
+  7px 7px 20px 0px #0002,
+  4px 4px 5px 0px #0001;
+  -webkit-transform: rotateX(90deg);
+  -moz-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+  }
+  .btn-12 span:nth-child(2) {
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+  }
+  .btn-12:hover span:nth-child(1) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+  7px 7px 20px 0px rgba(0,0,0,.1),
+  4px 4px 5px 0px rgba(0,0,0,.1);
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+  }
+  .btn-12:hover span:nth-child(2) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+  7px 7px 20px 0px rgba(0,0,0,.1),
+  4px 4px 5px 0px rgba(0,0,0,.1);
+  color: transparent;
+  -webkit-transform: rotateX(-90deg);
+  -moz-transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
+  }
+
+  .header-center{
+    font-size: 40px;
+    font-weight: 700;
+    color: #1945f6;
+    margin-right: 2%;
+  }
+  /* .header-right{
+      font-size: 30px;
+      color: #1945f6;
+  } */
+
+
+
+  
+.main {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+  margin-top: 2%;
+  margin-left: 5%;
+}
+
+.main td, .main th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.main tr:nth-child(even){background-color: #f2f2f2;}
+.main tr:nth-child(odd){background-color: #e3e3e3;}
+
+.main tr:hover {background-color: #95adef;}
+
+.main th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  /* background-colorgb(18, 151, 188)A6D; */
+  background-color: #0ea7c9;
+  color: white;
+}
+
+
+.excel_button {
+ border: 2px solid #24b4fb;
+ background-color: #24b4fb;
+ border-radius: 0.9em;
+ padding: 0.8em 1.2em 0.8em 1em;
+ transition: all ease-in-out 0.2s;
+ font-size: 16px;
+}
+
+.excel_button span {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ color: #fff;
+ font-weight: 600;
+}
+
+.excel_button:hover {
+ background-color: #0071e2;
+}
+
+@media (max-width:450px) {
+    body{
+        width: 130%;
+        background-image: linear-gradient(45deg, rgba(7, 142, 195, 0.6), rgba(7, 142, 195, 0.6));
+    }
+    
+    
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-wrapper">
+            <div class="header-left">
+                <button class="custom-btn btn-12" onclick="location.href='/show_stock_log'"><span>Tıkla</span><span>Geri</span></button>
+            </div>
+            <div class="header-center">
+                <span>Stok</span>
+            </div>
+            <div class="header-right">
+              <div class="output">
+                <a href="/stock_excel">
+                    <button class="excel_button">
+                        <span>
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg> Excel Çıktı
+                        </span>
+                      </button>
+                </a>
+            </div>
+            </div>
+          </div>
+    </header>
+    
+    <div class="activity">
+        <table id="urunler" class="main">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Ürün İsmi</th>
+                    <th onclick="sortTable(1)">Miktar</th>
+                    <th onclick="sortTable(2)">Birim</th>
+                    <th>Açıklama</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in data %}
+                <tr>
+                    <td>{{d.Ozel_Kod}}</td>
+                    <td>{{d.Miktar}}</td>
+                    <td>{{d.Birim}}</td>
+                    <td>{{d.Aciklama}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+
+    </div>
+
+    <script>
+        function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("urunler");
+  switching = true;
+
+  dir = "asc"; 
+
+  while (switching) {
+ 
+    switching = false;
+    rows = table.rows;
+
+    for (i = 1; i < (rows.length - 1); i++) {
+
+      shouldSwitch = false;
+
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      if (dir == "asc") {
+        if (n == 1) { 
+          if (Number(x.innerHTML) > Number(y.innerHTML)) { 
+            
+            shouldSwitch = true;
+            break;
+          }
+        } else { 
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) { 
+            
+            shouldSwitch = true;
+            break;
+          }
+        }
+      } else if (dir == "desc") {
+        if (n == 1) { 
+          if (Number(x.innerHTML) < Number(y.innerHTML)) { 
+            shouldSwitch = true;
+            break;
+          }
+        } else {
+          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) { 
+            shouldSwitch = true;
+            break;
+          }
+        }
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      switchcount ++; 
+    } else {
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+
+    </script>
+
+    
+</body>
+</html>

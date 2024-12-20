@@ -3,6 +3,7 @@ import time
 import paramiko
 import webbrowser
 import boto3
+
 from botocore.exceptions import ClientError
 
 with open(".secret", "r", encoding="utf-8") as f:
